@@ -1,4 +1,4 @@
-# SQL-Notlar
+# SQL Notları
 
 ## Kaynaklar
 
@@ -166,5 +166,116 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 *	MAX
 *	AVG
 *	COUNT
+
+**SELECT SUM**(PRICE),**COUNT**(ID),**MIN**(PRICE),**MAX**(PRICE),**AVG**(PRICE) **FROM** TABLOADI
+
+*	Bir ürünün ilk satış tarihini yazdırmak için:
+
+	**SELECT MIN**(DATE_) **AS** ILKSATISTARIHI **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+*	Bir ürünün son satış tarihini yazdırmak için:
+
+	**SELECT MAX**(DATE_) **AS** SONSATISTARIHI **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+*	Bir ürünün ilk satış, son satış ve kaç alışverişte alındığını yazdırmak için:
+
+	**SELECT MIN**(DATE_) **AS** ILKSATISTARIHI, **MAX**(DATE_) **AS** SONSATISTARIHI,**COUNT**(*) **AS** SATIRSAYISI **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+*	Bir ürünün ilk satış, son satış ve her alışverişte toplam kaç tane satıldığını yazdırmak için:
+
+	**SELECT MIN**(DATE_) **AS** ILKSATISTARIHI, **MAX**(DATE_) **AS** SONSATISTARIHI,**SUM**(AMOUNT) **AS** TOPLAMADET **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+*	Bir üründen toplam kazancı yazdırmak için:
+
+	**SELECT SUM**(TOTALPRICE) **AS** TOPLAMTUTAR **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+*	Bir ürünün ortalama fiyatı:
+
+	**SELECT AVG**(PRICE) **AS** ORTALAMAFIYAT **FROM** SALES **WHERE** ITEMNAME **LIKE** “COLGATE”
+  
+## GROUP BY Methodu
+
+Yukarıda hesapladığımız tüm değerleri her ürün için hesaplatmak istersek group by kullanmamız gerekir.
+
+•	Her ürünün ilk satış, son satış ve kaç alışverişte alındığını yazdırmak için:
+
+**SELECT** ITEMNAME **MIN**(DATE_) **AS** ILKSATISTARIHI, **MAX**(DATE_) **AS** SONSATISTARIHI,COUNT(*) **AS** SATIRSAYISI **FROM** SALES **GROUP BY** ITEMNAME
+
+•	Bir mağazanın gün bazlı satış rakamını getirme:
+
+**SELECT CONVERT**(DATE, DATE_) **AS** TARIH,**SUM**(TOTALPRICE) **AS** TOPLAMSATIS **FROM** SALES **WHERE** BRANCH=”İSTANBUL” **GROUP BY** **CONVERT**(DATE, DATE_) **ORDER BY** **CONVERT**(DATE, DATE_)
+
+*CONVERT() methodu ile tarih ve saat olan veri tipini sadece güne çevirdik. DATE güne çevirmek istediğimiz için yazıldı. DATE_ kolonun adı.*
+
+•	Bir günün mağaza bazlı satış rakamını getirme(örneğin 2019-08-02):
+
+**SELECT** CITY **AS** ŞEHİR,**SUM**(TOTALPRICE) **AS** TOPLAMSATIS **FROM** SALES **WHERE** **CONVERT**(DATE, DATE_)=”2019-08-02” **GROUP BY** CITY
+
+•	Mağazaların aylara göre satış rakamını getirme:
+
+**SELECT** CITY **AS** ŞEHİR,**DATEPART**(MONTH, DATE_) **AS** AY,**SUM**(TOTALPRICE) **AS** TOPLAMSATIS **FROM** SALES **GROUP BY** CITY **ORDER BY** CITY, **DATEPART**(MONTH, DATE_)
+
+•	Ürün kategorilerine göre azalan sırada satışları getirme:
+
+**SELECT** CATEGORY **AS** KATEGORİ,**SUM**(TOTALPRICE) **AS** TOPLAMSATIS **FROM** SALES **GROUP BY** CATEGORY **ORDER BY SUM**(TOTALPRICE) **DESC**
+
+•	Mağazaların müşteri sayılarını getirme (müşteri adına göre saydırma):
+
+**SELECT** CITY **AS** ŞEHİR,**COUNT**(**DISTINCT** CUSTOMERNAME) **AS** MUSTERİSAYISI **FROM** SALES **GROUP BY** CITY
+
+*DISTINCT kullandık çünkü bir müşteri birden fazla kez alışveriş yapmış olabilir.*
+
+•	Belli bir cironun üstünde satış yapan mağazaları getirme:
+
+**SELECT** CITY **AS** ŞEHİR,**SUM**(TOTALPRICE) **AS** TOPLAMSATIS **FROM** SALES **GROUP BY** CITY
+**HAVING SUM**(TOTALPRICE) >100000 **ORDER BY** SUM(TOTALPRICE) **DESC**
+
+*WHERE içine SUM(TOTALPRICE) >100000 yazamayız çünkü WHERE içinde aggregate fonksiyon kullanılmaz. Bu sebeple HAVING kullandık.*
+
+## CREATE Komutu
+
+**CREATE TABLE** tablo_adı(
+
+kolon_adı **INT AUTO_INCREMENT**,  *AUTO_INCREMENT girilmesi gerekmeden artar*
+  
+kolon_adı **VARCHAR(20) NOTNULL**,  *NOTNULL o kolonda null olamayacağını gösterir*
+  
+kolon_adı **VARCHAR(20) UNIQUE**,  *UNIQUE o kolonda aynı değerlerin olamayacağı*
+  
+**PRIMARY KEY**(kolon_adı)
+  
+);
+
+## DROP Komutu
+
+**DROP TABLE** student; Tabloyu siler
+
+## ALTER Komutu
+
+Tabloyu düzenlemek için kullanılır.
+
+*	**ALTER TABLE** student **ADD** gpa **DECIMAL**(3,2);  3 sayıdan oluşan, 2si noktadan sonra gelen sayı içeren yeni kolon ekler.
+
+*	**ALTER TABLE** student **DROP COLUMN** gpa; gpa kolonunu siler
+
+## İlişkisel Veri Tabanları
+
+USERS tablosu ID kolonundan ADDRESS kolonunun USERID kolonuna bağlıdır.
+
+*	ID=1 olan datayı çekmek
+
+**SELECT** USERS, ADRESS **FROM** USERS,ADDRESS **WHERE** USERS.ID=ADDRES.USERID **AND** USERS.ID=1
+
+*CITIES tablosu ID kolonundan ADDRESS kolonunun CITYID kolonuna bağlıdır*
+
+*	ID=1 olan datayı çekmek
+
+**SELECT** USERS.USERNAME,USERS.NAMESURNAME, ADRESS *,CITIES.CITY **FROM** USERS,ADDRESS,CITIES **WHERE** USERS.ID=ADDRES.USERID **AND** CITIES.ID=ADDRESS.CITYID **AND** USERS.ID=1
+
+*USERS.USERNAME yazarak USERS tablosundan sadece USERNAME kolonunun gösterilmesi sağlanır.*
+
+Tabloların adlarını kısa kullanabiliriz:
+
+**SELECT** U, A **FROM** USERS U,ADDRESS A **WHERE** U.ID=A.USERID **AND** U.ID=1
+
+## İlişkisel Veri Tabanı Oluşturma Örneği
+
+[Mike Dane Creating Company Database](https://www.mikedane.com/databases/sql/creating-company-database/)
+
 
 
