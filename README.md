@@ -90,7 +90,7 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 ## WHERE Komutu
 
 *	= eşittir,
-*	 <> eşit değildir,
+*	<> eşit değildir,
 *	< büyüktür,
 *	> küçüktür,
 *	<= büyüktür ya da eşittir,
