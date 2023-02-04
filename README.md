@@ -31,7 +31,7 @@ Notlar bu iki video kullanılarak çıkarılmıştır:
 
 ## SQL Dili
 
-### Temel SQL Komutları
+## Temel SQL Komutları
 
 #### Data Manipülasyon Komutları
 
@@ -47,19 +47,19 @@ Notlar bu iki video kullanılarak çıkarılmıştır:
 * Alter: Bir veri tabanı nesnesinin özelliğini değiştirir
 * Drop: Bir veri tabanı nesnesini siler
 
-### SELECT Komutu
+## SELECT Komutu
 
 **SELECT** KOLON1,KOLON2,KOLON3… **FROM** TABLOADI **WHERE**<ŞARTLAR>
 
 **SELECT** * **FROM** TABLOADI : Tüm kolonlardaki verileri getirir
 
-### INSERT Komutu
+## INSERT Komutu
 
 **INSERT INTO** TABLOADI (KOLON1, KOLON2,KOLON3…) **VALUES** (DEĞER1,DEĞER2,DEĞER3…)
 
 **INSERT INTO** CUSTOMERS (NAMESURNAME,GENDER,CITY) **VALUES** (“ZEYNEP AKTAŞLI”,”K”,”İSTANBUL”)
 
-### UPDATE Komutu
+## UPDATE Komutu
 
 **UPDATE** TABLOADI **SET** KOLON1=DEĞER1,KOLON2=DEĞER2,KOLON3=DEĞER3… **WHERE**<ŞARTLAR>
 
@@ -73,7 +73,7 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 
 *YEAR: Yıllar arasındaki farkı hesaplamak istediğimiz için verilir*
 
-### DELETE Koumutu
+## DELETE Koumutu
 
 **DELETE FROM** TABLOADI WHERE<ŞARTLAR>
 
@@ -81,13 +81,13 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 
 **DELETE FROM** student **WHERE** student_id=5: id’si 5 olan öğrenciyi siler
 
-### TRUNCATE Komutu
+## TRUNCATE Komutu
 
 **TRUNCATE TABLE** TABLOADI : Veri tabanındaki tüm kayıtları siler 
 
 *DELETE ile farkı TRUNCATE sıra numaralarını sıfırlar(numaralar 1 den başlar), DELETE ise 10 kayıt varsa silip yeni kayıt eklediğimizde sıra numaraları 11 den başlar.*
 
-### WHERE Komutu
+## WHERE Komutu
 
 *	= eşittir,
 *	 <> eşit değildir,
@@ -123,19 +123,19 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 
 **UPDATE** CUSTOMERS **SET** GENDER=”ERKEK” **WHERE** GENDER=”E” : GENDER değeri E olanları ERKEK olarak değiştir
 
-### AND OR Operatörleri
+## AND OR Operatörleri
 
 **SELECT** * **FROM** CUSTOMERS **WHERE** CITY=”ANKARA” **AND** GENDER=”E” **AND** TOWN=”ÇANKAYA”
 
 **SELECT** * **FROM** CUSTOMERS **WHERE** BIRTHDATE>=”1990-01-01” **AND** BIRTHDATE<=”1995-12-31”
 
-### DISTINCT Komutu
+## DISTINCT Komutu
 
 **SELECT DISTINCT** GENDER **FROM** CUSTOMERS : GENDER içinde kaç tür var (erkek ve kadın)
 
 **SELECT DISTINCT** CITY **FROM** CUSTOMERS : Kaç şehir var?
 
-### ORDER BY Komutu
+## ORDER BY Komutu
 
 **SELECT** KOLON1,KOLON2,KOLON3… **FROM** TABLOADI **WHERE**<ŞARTLAR> **ORDER** BY KOLON1 **ASC**,KOLON2 **DESC**…
 
@@ -149,13 +149,13 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 
 **SELECT** * **FROM** CUSTOMERS **ORDER BY** 4 **DESC** : 4. kolonu azalan sıralı getirir
 
-### TOP Komutu
+## TOP Komutu
 
 **SELECT TOP** 10 * **FROM** CUSTOMERS **ORDER BY** 4 **DESC** : : 4. kolonun azalan sıralı ilk 10 verisini getirir. 
 
 **SELECT TOP** 10 **PERCENT** * **FROM** CUSTOMERS **ORDER BY** 4 **DESC** : : 4. kolonun azalan sıralı %10 kadar verisini getirir. 
 
-### (MySQL)LIMIT Komutu
+## (MySQL)LIMIT Komutu
 
 **SELECT** * **FROM** STUDENT **ORDER BY** student_id **DESC LIMIT** 2; STUDENT tablosundan student_id’si azalan sıralı 2 veriyi getirir.
 
