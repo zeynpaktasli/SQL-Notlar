@@ -277,5 +277,39 @@ Tabloların adlarını kısa kullanabiliriz:
 
 [Mike Dane Creating Company Database](https://www.mikedane.com/databases/sql/creating-company-database/)
 
+## UNION Komutu
+
+* Çalışan ve şube isimlerinin listesini getir:
+
+*Alt alta önce isimleri sonra şubeleri yazdırır*
+
+**SELECT** first_name **AS** Company_Names **FROM** employee;
+**UNION**
+**SELECT** branch_name **FROM** branch; 
+
+* Müşteri ve şube tedarikçilerini id ile getir:
+
+**SELECT** client_name, branch_id *(client.branch_id de yazılabilir)* **FROM** client;
+**UNION**
+**SELECT** supplier_name, branch_id *(branch_supplier.brnach_id de yazılabilir)* **FROM** branch_supplier; 
+
+## JOIN Komutu
+
+![image](https://user-images.githubusercontent.com/79712981/216787453-f33ff596-1ec9-4a0c-a3e3-c581594dd7b2.png)
+[Resim Kaynağı](https://tr.wikipedia.org/wiki/Dosya:SQL_Joins.svg)
+
+* Tüm şubeleri ve müdürlerinin isimlerini getir:
+
+**SELECT** employee.emp_id, employee.first_name, branch.branch_name **FROM** employee **JOIN** branch **ON** employee.emp_id=branch.mgr_id;
+
+* Tüm isimleri getirip müdür olanların şubelerini getir:
+
+**SELECT** employee.emp_id, employee.first_name, branch.branch_name **FROM** employee **LEFT JOIN** branch **ON** employee.emp_id=branch.mgr_id;
+
+* Tüm şubeleri ve varsa müdürlerini getir:
+
+**SELECT** employee.emp_id, employee.first_name, branch.branch_name **FROM** employee **RIGHT JOIN** branch **ON** employee.emp_id=branch.mgr_id;
+
+
 
 
