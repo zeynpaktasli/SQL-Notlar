@@ -92,9 +92,9 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 *	= eşittir,
 *	<> eşit değildir,
 *	< büyüktür,
-*	> küçüktür,
+*	">" küçüktür,
 *	<= büyüktür ya da eşittir,
-*	>= küçüktür ya da eşittir,
+*	">=" küçüktür ya da eşittir,
 *	BETWEEN arasındadır,
 *	LIKE ile başlar/ile biter/içerir,
 *	IN içindedir, 
@@ -296,6 +296,7 @@ Tabloların adlarını kısa kullanabiliriz:
 ## JOIN Komutu
 
 ![image](https://user-images.githubusercontent.com/79712981/216787453-f33ff596-1ec9-4a0c-a3e3-c581594dd7b2.png)
+
 [Resim Kaynağı](https://tr.wikipedia.org/wiki/Dosya:SQL_Joins.svg)
 
 * Tüm şubeleri ve müdürlerinin isimlerini getir:
