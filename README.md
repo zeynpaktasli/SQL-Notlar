@@ -89,11 +89,11 @@ Tabloda doğum tarihleri varsa ve yaş hesaplamak istersek:
 
 ## WHERE Komutu
 
-*	= eşittir,
-*	<> eşit değildir,
-*	< büyüktür,
+*	"=" eşittir,
+*	"<>" eşit değildir,
+*	"<" büyüktür,
 *	">" küçüktür,
-*	<= büyüktür ya da eşittir,
+*	"<=" büyüktür ya da eşittir,
 *	">=" küçüktür ya da eşittir,
 *	BETWEEN arasındadır,
 *	LIKE ile başlar/ile biter/içerir,
@@ -284,13 +284,17 @@ Tabloların adlarını kısa kullanabiliriz:
 *Alt alta önce isimleri sonra şubeleri yazdırır*
 
 **SELECT** first_name **AS** Company_Names **FROM** employee;
+
 **UNION**
+
 **SELECT** branch_name **FROM** branch; 
 
 * Müşteri ve şube tedarikçilerini id ile getir:
 
 **SELECT** client_name, branch_id *(client.branch_id de yazılabilir)* **FROM** client;
+
 **UNION**
+
 **SELECT** supplier_name, branch_id *(branch_supplier.brnach_id de yazılabilir)* **FROM** branch_supplier; 
 
 ## JOIN Komutu
